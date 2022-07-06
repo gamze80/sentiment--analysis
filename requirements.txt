@@ -1,0 +1,15 @@
+psycopg2-binary
+werkzeug
+python-dotenv
+waitress
+Paste
+numpy
+scipy
+pandas==1.3.0
+fastapi[all]==0.61.2
+sqlalchemy
+geoalchemy2
+torch
+gdown
+transformers==2.8.0
+requests
