@@ -1,7 +1,6 @@
-import sentiment_backend_service.settings
 import uvicorn
 from fastapi import FastAPI
-import gdown
+import sentiment_backend_service.settings
 from sentiment_backend_service.api.v1.book_service.router import BookRouter
 from sentiment_backend_service.api.v1.sentiment_analysis_service.router import AnalysisRouter
 
@@ -21,10 +20,7 @@ sub_app = FastAPI(
     openapi_url="/openapi.json",
 )
 
-gdown.download(
-    "https://drive.google.com/uc?id=1V8itWtowCYnb2Bc9KlK9SxGff9WwmogA",
-    "sentiment_backend_service/api/v1/sentiment_analysis_service/assets/model_state_dict.bin",
-)
+
 sub_app.include_router(BookRouter().get_router(), prefix="/book_service")
 sub_app.include_router(AnalysisRouter().get_router(), prefix="/analysis_service")
 app.mount("/v1/sentiment_backend", sub_app)
