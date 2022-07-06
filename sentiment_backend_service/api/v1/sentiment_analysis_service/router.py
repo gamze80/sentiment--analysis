@@ -4,7 +4,6 @@ from .repository import AnalysisRepository
 from . import test
 
 
-
 class AnalysisRouter(GenericRouter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -12,7 +11,7 @@ class AnalysisRouter(GenericRouter):
 
     def bind_routes(self):
         self.get_router().post("/predict_text", response_model=SentimentResponse, tags=["Predictions"])(self.predict)
-        self.get_router().post("/predict_list", response_model=SentimentResponse, tags=["Predictions"])(
+        self.get_router().post("/predict_list", tags=["Predictions"])(
             self.request_list)
         self.get_router().get("/comments", tags=["Test List Of Comments"])(test.comment)
 
@@ -20,6 +19,5 @@ class AnalysisRouter(GenericRouter):
                 request: SentimentRequest):
         return AnalysisRepository.predict(request)
 
-    def request_list(self
-                     , input_site: str):
-        return AnalysisRepository.request_list(input_site)
+    def request_list(self):
+        return AnalysisRepository.request_list(None)
